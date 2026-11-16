@@ -141,6 +141,47 @@
   .req div:nth-child(odd) { color: var(--ink-faint); font-weight: 500; }
   .req div:nth-child(even) { color: var(--ink); }
 
+  /* Download */
+  .nav-cta {
+    color: var(--navy-900) !important; font-weight: 600; padding: 7px 14px; border-radius: 8px;
+    background: linear-gradient(100deg, var(--gold-300), var(--gold-500));
+  }
+  .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; margin-top: 30px; }
+  .cta-meta { color: var(--ink-faint); font-size: 14px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 10px;
+    font-weight: 600; font-size: 16px; text-decoration: none;
+  }
+  .btn svg { width: 19px; height: 19px; }
+  .btn.primary {
+    color: var(--navy-900);
+    background: linear-gradient(100deg, var(--gold-300), var(--gold-500));
+    box-shadow: 0 10px 30px rgba(201, 154, 88, 0.25);
+  }
+  .btn.primary:hover { text-decoration: none; filter: brightness(1.06); }
+  .btn:focus-visible, .nav-cta:focus-visible { outline: 2px solid var(--gold-300); outline-offset: 3px; }
+  .download { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .download h2 { font-size: clamp(30px, 3.6vw, 42px); line-height: 1.15; }
+  .dl-lede { color: var(--ink-soft); font-size: 18px; margin: 16px 0 28px; }
+  .dl-meta { margin: 28px 0 0; display: grid; gap: 10px; }
+  .dl-meta div { display: grid; grid-template-columns: 90px 1fr; gap: 12px; }
+  .dl-meta dt { color: var(--ink-faint); font-size: 14px; }
+  .dl-meta dd { margin: 0; font-size: 15px; min-width: 0; }
+  code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 0.86em; color: var(--gold-300); overflow-wrap: anywhere; }
+  .dl-links { margin: 18px 0 0; font-size: 15px; color: var(--ink-faint); }
+  .install-steps { list-style: none; counter-reset: inst; padding: 0; margin: 0; display: grid; gap: 14px; }
+  .install-steps li {
+    counter-increment: inst; position: relative; padding: 20px 22px 20px 64px;
+    border-radius: var(--radius); background: var(--navy-800); border: 1px solid var(--line);
+  }
+  .install-steps li::before {
+    content: counter(inst); position: absolute; left: 22px; top: 19px; width: 28px; height: 28px; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 600; font-size: 14px; color: var(--navy-900); background: var(--gold-400);
+  }
+  .install-steps li.note::before { content: "!"; background: var(--navy-600); color: var(--gold-300); }
+  .install-steps strong { display: block; margin-bottom: 4px; }
+  .install-steps span { color: var(--ink-soft); font-size: 16px; }
+
   footer { padding: 44px 0 56px; color: var(--ink-faint); font-size: 14px; }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; }
 
@@ -148,6 +189,7 @@
     .hero .wrap { grid-template-columns: 1fr; }
     .hero .mark { width: 96px; border-radius: 20px; justify-self: start; grid-row: 1; }
     .grid.three, .steps { grid-template-columns: repeat(2, 1fr); }
+    .download { grid-template-columns: 1fr; gap: 36px; }
   }
   @media (max-width: 620px) {
     body { font-size: 16px; }
@@ -174,6 +216,7 @@
       <a href="#how">How it works</a>
       <a href="#trust">Governance</a>
       <a href="#requirements">Requirements</a>
+      <a href="#download" class="nav-cta">Download</a>
     </nav>
   </div>
 </header>
@@ -193,6 +236,13 @@
           <li>Human approval for sensitive actions</li>
           <li>Verified results</li>
         </ul>
+        <div class="cta-row">
+          <a class="btn primary" href="https://github.com/Navique-AI/navique-ai.github.io/releases/download/v1.1.0/Cera-1.1.0.msi">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+            Download for Windows
+          </a>
+          <span class="cta-meta">Version 1.1.0 &middot; 79 MB &middot; Windows 10/11, 64-bit</span>
+        </div>
       </div>
       <img class="mark" src="logo.png" alt="Cera logo" width="300" height="300">
     </div>
@@ -314,6 +364,40 @@
         <div>AI model</div><div>A local model served by Ollama, installed on the same machine</div>
         <div>Internet</div><div>Not required for local chat, desktop operation or the offline library</div>
         <div>Approvals</div><div>Windows Hello, for verifying the person who approves sensitive actions</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="download">
+    <div class="wrap">
+      <div class="download">
+        <div>
+          <p class="eyebrow">Download</p>
+          <h2>Install Cera</h2>
+          <p class="dl-lede">A standard Windows installer. It contains the application and its local database service;
+            your settings and data stay in your own Windows profile.</p>
+          <a class="btn primary" href="https://github.com/Navique-AI/navique-ai.github.io/releases/download/v1.1.0/Cera-1.1.0.msi">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+            Download Cera-1.1.0.msi
+          </a>
+          <dl class="dl-meta">
+            <div><dt>Version</dt><dd>1.1.0 (preview)</dd></div>
+            <div><dt>Size</dt><dd>79 MB</dd></div>
+            <div><dt>SHA-256</dt><dd><code>3AEA9B41EC51637DA319D800C621C53C8A93F3C5C7B3B487B5DCDBB7E7C9F5AB</code></dd></div>
+          </dl>
+          <p class="dl-links"><a href="https://github.com/Navique-AI/navique-ai.github.io/releases/tag/v1.1.0">Release notes</a>
+            &middot; <a href="https://github.com/Navique-AI/navique-ai.github.io/releases/download/v1.1.0/SHA256SUMS.txt">SHA256SUMS.txt</a></p>
+        </div>
+        <ol class="install-steps">
+          <li><strong>Run the installer</strong><span>Open <code>Cera-1.1.0.msi</code> and approve the administrator prompt.
+            Cera installs to <code>C:\Program Files\Navique.AI\Cera</code> with Start-menu and desktop shortcuts.</span></li>
+          <li><strong>Add a local model</strong><span>Install <a href="https://ollama.com/">Ollama</a> and pull a model. Cera's
+            chat runs on it, on your machine.</span></li>
+          <li><strong>Start Cera</strong><span>Launch it from the Start menu. To remove it later, use Settings &rarr; Apps &rarr;
+            Installed apps.</span></li>
+          <li class="note"><strong>Not yet code-signed</strong><span>Windows SmartScreen may say &ldquo;Windows protected your
+            PC&rdquo;. Check that the SHA-256 of your download matches the one shown here, then choose More info &rarr; Run anyway.</span></li>
+        </ol>
       </div>
     </div>
   </section>
