@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cera by Navique.AI</title>
+<meta name="description" content="Cera is a private, governed AI agent for the Windows desktop. It runs on a local model, works in the applications your team already uses, and proves every result.">
+<meta property="og:title" content="Cera by Navique.AI">
+<meta property="og:description" content="A private, governed AI agent for the Windows desktop.">
+<meta property="og:image" content="logo.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-900: #0d1626;
+    --navy-800: #13203a;
+    --navy-700: #1b2c4b;
+    --navy-600: #2a3d61;
+    --gold-300: #ecd2a0;
+    --gold-400: #ddb779;
+    --gold-500: #c99a58;
+    --ink: #e8edf5;
+    --ink-soft: #aab6c9;
+    --ink-faint: #74839c;
+    --line: rgba(221, 183, 121, 0.18);
+    --radius: 14px;
+    --max: 1120px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--navy-900);
+    color: var(--ink);
+    font: 400 17px/1.65 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--gold-300); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3 { font-family: Fraunces, Georgia, serif; font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+  .gold {
+    background: linear-gradient(100deg, var(--gold-300), var(--gold-500));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .eyebrow {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold-400); margin: 0 0 14px;
+  }
+
+  /* Header */
+  header.top {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(13, 22, 38, 0.82); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 600; }
+  .brand img { width: 30px; height: 30px; border-radius: 7px; }
+  .brand:hover { text-decoration: none; }
+  nav a { color: var(--ink-soft); font-size: 15px; margin-left: 26px; }
+  nav a:hover { color: var(--ink); text-decoration: none; }
+
+  /* Hero */
+  .hero {
+    position: relative; overflow: hidden;
+    padding: 104px 0 96px;
+    background:
+      radial-gradient(900px 480px at 85% -10%, rgba(201, 154, 88, 0.16), transparent 60%),
+      radial-gradient(700px 420px at -10% 110%, rgba(42, 61, 97, 0.7), transparent 60%),
+      var(--navy-900);
+  }
+  .hero .wrap { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 56px; align-items: center; }
+  .hero h1 { font-size: clamp(40px, 5.4vw, 64px); line-height: 1.06; }
+  .hero p.lede { font-size: 20px; color: var(--ink-soft); max-width: 36ch; margin: 24px 0 0; }
+  .hero .mark {
+    justify-self: center; width: min(300px, 70vw); height: auto; aspect-ratio: 1; border-radius: 36px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), 0 0 0 1px var(--line);
+  }
+  .facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; padding: 0; list-style: none; }
+  .facts li {
+    font-size: 14px; color: var(--ink-soft); padding: 7px 14px; border-radius: 999px;
+    border: 1px solid var(--line); background: rgba(27, 44, 75, 0.5);
+  }
+
+  /* Sections */
+  section { padding: 96px 0; }
+  section.alt { background: var(--navy-800); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .section-head { max-width: 680px; margin-bottom: 52px; }
+  .section-head h2 { font-size: clamp(30px, 3.6vw, 42px); line-height: 1.15; }
+  .section-head p { color: var(--ink-soft); margin: 16px 0 0; font-size: 18px; }
+
+  .grid { display: grid; gap: 20px; }
+  .grid.three { grid-template-columns: repeat(3, 1fr); }
+  .grid.two { grid-template-columns: repeat(2, 1fr); }
+  .card {
+    background: linear-gradient(180deg, rgba(42, 61, 97, 0.45), rgba(27, 44, 75, 0.35));
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 28px;
+  }
+  .card h3 { font-size: 21px; margin-bottom: 10px; }
+  .card p { margin: 0; color: var(--ink-soft); font-size: 16px; }
+  .icon {
+    width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; margin-bottom: 18px;
+    background: rgba(201, 154, 88, 0.14); color: var(--gold-300);
+  }
+  .icon svg { width: 22px; height: 22px; }
+
+  /* Steps */
+  .steps { counter-reset: step; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .step { position: relative; padding-top: 58px; }
+  .step::before {
+    counter-increment: step; content: counter(step, decimal-leading-zero);
+    position: absolute; top: 0; left: 0;
+    font: 600 34px/1 Fraunces, Georgia, serif; color: var(--gold-400);
+  }
+  .step h3 { font-size: 20px; margin-bottom: 8px; }
+  .step p { margin: 0; color: var(--ink-soft); font-size: 16px; }
+
+  /* Apps strip */
+  .apps { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
+  .apps span {
+    padding: 10px 18px; border-radius: 10px; font-size: 15px; font-weight: 500;
+    background: var(--navy-700); border: 1px solid var(--line); color: var(--ink);
+  }
+
+  /* Guarantees list */
+  .guarantees { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  .guarantees li {
+    display: grid; grid-template-columns: 26px 1fr; gap: 14px; align-items: start;
+    padding: 20px 22px; border-radius: var(--radius); background: rgba(13, 22, 38, 0.55); border: 1px solid var(--line);
+  }
+  .guarantees svg { width: 22px; height: 22px; color: var(--gold-400); margin-top: 3px; }
+  .guarantees strong { display: block; font-weight: 600; margin-bottom: 2px; }
+  .guarantees span { color: var(--ink-soft); font-size: 16px; }
+
+  /* Requirements */
+  .req { display: grid; grid-template-columns: 220px 1fr; border-top: 1px solid var(--line); }
+  .req div { padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .req div:nth-child(odd) { color: var(--ink-faint); font-weight: 500; }
+  .req div:nth-child(even) { color: var(--ink); }
+
+  footer { padding: 44px 0 56px; color: var(--ink-faint); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; }
+
+  @media (max-width: 900px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    .hero .mark { width: 96px; border-radius: 20px; justify-self: start; grid-row: 1; }
+    .grid.three, .steps { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 620px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 16px; }
+    nav { display: none; }
+    .hero { padding: 64px 0 64px; }
+    .hero p.lede { font-size: 18px; }
+    section { padding: 68px 0; }
+    .grid.three, .grid.two, .steps { grid-template-columns: 1fr; }
+    .req { grid-template-columns: 1fr; }
+    .req div:nth-child(odd) { padding-bottom: 0; border-bottom: 0; }
+    .req div:nth-child(even) { padding-top: 4px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="logo.png" alt="" width="30" height="30">Cera</a>
+    <nav aria-label="Sections">
+      <a href="#what">What it does</a>
+      <a href="#how">How it works</a>
+      <a href="#trust">Governance</a>
+      <a href="#requirements">Requirements</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Navique.AI</p>
+        <h1>An AI agent that does the work <span class="gold">and proves it.</span></h1>
+        <p class="lede">Cera is a private, governed AI agent for the Windows desktop. It works inside the
+          applications your team already uses, runs on a model that stays on your machine, and asks
+          before it does anything consequential.</p>
+        <ul class="facts">
+          <li>Runs on a local model</li>
+          <li>Works offline</li>
+          <li>Human approval for sensitive actions</li>
+          <li>Verified results</li>
+        </ul>
+      </div>
+      <img class="mark" src="logo.png" alt="Cera logo" width="300" height="300">
+    </div>
+  </section>
+
+  <section id="what">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What it does</p>
+        <h2>Finished work, not just answers</h2>
+        <p>Describe the outcome in plain language. Cera plans the steps, carries them out in your
+          desktop applications, and hands back the result with the evidence that it is done.</p>
+      </div>
+      <div class="grid three">
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <h3>Operates your desktop</h3>
+          <p>Opens applications, fills in forms, clicks through dialogs and reads the screen, the way a
+            colleague at the keyboard would, then checks that each step actually happened.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div>
+          <h3>Produces deliverables</h3>
+          <p>Specialised digital workers produce saved workbooks, sourced reports and completed
+            operations, each with a validation record you can audit.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h11"/><circle cx="18.5" cy="18" r="2.5"/></svg></div>
+          <h3>Plans and schedules</h3>
+          <p>Builds and updates project schedules in Primavera P6 Professional and Microsoft Project,
+            including custom VBA macros and ribbon buttons.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/></svg></div>
+          <h3>Joins meetings</h3>
+          <p>Attends Microsoft Teams meetings on request, under a participation policy you choose.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+          <h3>Browses on your behalf</h3>
+          <p>Uses its own isolated browser, kept separate from yours, so your personal sessions are
+            never touched.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V6a2 2 0 0 1 2-2h12v15H6a2 2 0 0 0-2 2z"/><path d="M8 8h6"/></svg></div>
+          <h3>Answers offline</h3>
+          <p>An optional offline library of medical, emergency and how-to references, answered by the
+            local model with no internet connection.</p>
+        </div>
+      </div>
+      <div class="apps" aria-label="Applications Cera works with">
+        <span>Microsoft Excel</span><span>Outlook</span><span>Microsoft Teams</span>
+        <span>Microsoft Project</span><span>Primavera P6 Professional</span><span>Google Chrome</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>From request to verified result</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>Ask</h3>
+          <p>Describe what you need in the chat window, in your own words.</p>
+        </div>
+        <div class="step">
+          <h3>Plan</h3>
+          <p>Cera turns the request into a concrete plan and classifies how much risk each step carries.</p>
+        </div>
+        <div class="step">
+          <h3>Approve</h3>
+          <p>Anything sensitive waits for your confirmation, and that approval covers that exact plan only.</p>
+        </div>
+        <div class="step">
+          <h3>Verify</h3>
+          <p>Cera checks the outcome on screen. If it cannot confirm it, it says so instead of claiming success.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="trust">
+    <div class="wrap">
+      <div class="grid two" style="align-items:start; gap:56px">
+        <div class="section-head" style="margin-bottom:0">
+          <p class="eyebrow">Governance</p>
+          <h2>Built to be trusted with a real desktop</h2>
+          <p>Safety in Cera is enforced by the software itself, not left to the model's judgement.
+            The rules below hold no matter what the agent is asked to do.</p>
+        </div>
+        <ul class="guarantees">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>
+            <div><strong>One controlled path to your desktop</strong><span>Every action goes through a single checkpoint. Nothing reaches your applications any other way.</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5"/></svg>
+            <div><strong>An off switch that always works</strong><span>A global kill switch stops all activity at once. Only a person verified with Windows Hello can turn it back on.</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><rect x="3" y="3" width="18" height="18" rx="4"/></svg>
+            <div><strong>Approvals tied to a real person</strong><span>Sensitive plans need a single-use approval for that exact plan, recorded against a verified approver.</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4V10H4zM10 20h4V4h-4zM16 20h4v-7h-4z"/></svg>
+            <div><strong>Autonomy you control</strong><span>The agent starts at the lowest autonomy level. Anything self-directed has to be permitted first.</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+            <div><strong>Private by design</strong><span>The model runs on your own hardware, so your documents and conversations stay on your machine.</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="requirements" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Requirements</p>
+        <h2>What Cera runs on</h2>
+      </div>
+      <div class="req">
+        <div>Operating system</div><div>Windows 10 or Windows 11, 64-bit</div>
+        <div>Processor</div><div>Runs on CPU; no dedicated GPU required</div>
+        <div>AI model</div><div>A local model served by Ollama, installed on the same machine</div>
+        <div>Internet</div><div>Not required for local chat, desktop operation or the offline library</div>
+        <div>Approvals</div><div>Windows Hello, for verifying the person who approves sensitive actions</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 Navique.AI. Cera is in active development; capabilities may change.</span>
+    <span>Microsoft, Excel, Outlook, Teams, Project, Oracle Primavera and Chrome are trademarks of their respective owners.</span>
+  </div>
+</footer>
+
+</body>
+</html>
